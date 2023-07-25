@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Battery Info</string>
+    <string name="app_github">https://github.com/martin-coding/android-BatteryInfo</string>
+    <string name="app_playstore">https://play.google.com/store/apps/details?id=com.martintools.batteryinfo</string>
+    <string name="is_charging">is charging</string>
+    <string name="voltage">Voltage</string>
+    <string name="technology">Technology</string>
+    <string name="health">Health</string>
+    <string name="charging_source">Charging source</string>
+    <string name="temperature">Temperature</string>
+    <string name="source_code">Source Code</string>
+    <string name="info">Info</string>
+    <string name="share">Share</string>
+</resources>
