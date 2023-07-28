@@ -13,9 +13,11 @@ Features:
 - colorful indication of your current battery percenage
 <!-- - Helps you to find the best charger -->  
 
-
-
 Constantly new features!
+
+<!-- add pictures below -->
+
+<!-- add pictures above  -->
 
 ### how to install: (for end-users (if its even possible to install))
 
