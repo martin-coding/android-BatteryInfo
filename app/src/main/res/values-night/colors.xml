@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!---  Dark Mode - Colors -->
+    <color name="bar">#242424</color>
+    <color name="text">#FFFFFF</color>
+    <color name="circle">#E6E6E6</color>
+    <color name="background">#121212</color>
+    <!---  Dark Mode - Levels -->
+    <color name="level5">#9BFF4A</color>
+    <color name="level4">#DEFF4A</color>
+    <color name="level3">#FFDE4A</color>
+    <color name="level2">#FFB44A</color>
+    <color name="level1">#FF7754</color>
+    <color name="level0">#FF4a4a</color>
+</resources>
