@@ -1,25 +1,23 @@
 # BatteryInfo
-## A simple app that makes reading your batteries status-information easy.
-
-A simple app to get more detailed information about your battery.
+## A simple app to get more detailed information about your battery.
 
 Features:
 
+- Colorful indication of your current battery percenage
 - Displays the battery temperature in real time
 - Shows you the technology your battery is using
 - Warns you of unhealthy battery conditions
+- Lightweight, fast and easy to use
 - Dark mode for eye-friendliness
-- Very low power consumtion
-- colorful indication of your current battery percenage
 <!-- - Helps you to find the best charger -->  
 
-Constantly new features!
+New features planed!
 
 <!-- add pictures below -->
 
 <!-- add pictures above  -->
 
-### how to install: (for end-users (if its even possible to install))
+### how to install:
 
 The App is available on the Google Play Store, Find it [here!](https://play.google.com/store/apps/details?id=com.martintools.batteryinfo)
 
