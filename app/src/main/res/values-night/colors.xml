@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--- Temperature Colors -->
+    <color name="hot">#DB7070</color>
+    <color name="warm">#C1858B</color>
+    <color name="perfect">#EEEEEE</color>
+    <color name="cool">#AFD8E5</color>
+    <color name="cold0">#90CDE1</color>
+    <color name="cold1">#70C1DC</color>
     <!---  Dark Mode - Colors -->
     <color name="bar">#242424</color>
     <color name="text">#FFFFFF</color>

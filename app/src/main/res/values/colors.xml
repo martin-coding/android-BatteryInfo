@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="orange_200">#FD6A02</color>
-    <color name="orange_700">#964000</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <!---  Circular Progress bar gradient -->
-    <color name="red">#FF0000</color>
-    <color name="green">#00FF00</color>
+    <!--- Base Colors -->
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <!--- Temperature Colors -->
+    <color name="hot">#DB7070</color>
+    <color name="warm">#834D4D</color>
+    <color name="perfect">#2A2A2A</color>
+    <color name="cool">#4D7683</color>
+    <color name="cold0">#5F9CB0</color>
+    <color name="cold1">#70C1DC</color>
+    <!---  Light Mode - Colors -->
+    <color name="bar">#313131</color>
+    <color name="text">#3A3A3A</color>
+    <color name="circle">#313131</color>
+    <color name="background">#FCFCFC</color>
+    <!---  Light Mode - Levels -->
+    <color name="level5">#32A857</color>
+    <color name="level4">#79A832</color>
+    <color name="level3">#A89332</color>
+    <color name="level2">#A86D32</color>
+    <color name="level1">#A85832</color>
+    <color name="level0">#A83232</color>
 </resources>

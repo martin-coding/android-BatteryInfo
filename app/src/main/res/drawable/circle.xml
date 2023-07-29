@@ -5,7 +5,7 @@
             android:shape="ring"
             android:thicknessRatio="16"
             android:useLevel="false">
-            <solid android:color="#DDD" />
+            <solid android:color="@color/circle" />
         </shape>
     </item>
     <item>
@@ -15,11 +15,8 @@
             <shape
                 android:shape="ring"
                 android:thicknessRatio="16"
-                android:useLevel="true">
-                <gradient
-                    android:endColor="@color/green"
-                    android:startColor="@color/red"
-                    android:type="sweep" />
+                android:useLevel="true"
+                android:tint="@color/level3">
             </shape>
         </rotate>
     </item>

@@ -6,7 +6,7 @@
     <string name="voltage">Voltage</string>
     <string name="technology">Technology</string>
     <string name="health">Health</string>
-    <string name="charging_source">Charging source</string>
+    <string name="charging_source">Charger</string>
     <string name="temperature">Temperature</string>
     <string name="source_code">Source Code</string>
     <string name="info">Info</string>
