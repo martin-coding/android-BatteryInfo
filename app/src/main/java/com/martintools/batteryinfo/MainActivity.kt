@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
                 BatteryManager.BATTERY_PLUGGED_AC -> sourceField.text = "AC charger"
                 BatteryManager.BATTERY_PLUGGED_USB -> sourceField.text = "USB connection"
                 BatteryManager.BATTERY_PLUGGED_WIRELESS -> sourceField.text = "Wireless charging"
+                BatteryManager.BATTERY_PLUGGED_DOCK -> sourceField.text = "Dock"
                 else -> sourceField.text = "Not Plugged"
             }
             sourceField.setTextColor(getColorByLevel(batteryPercentage))
