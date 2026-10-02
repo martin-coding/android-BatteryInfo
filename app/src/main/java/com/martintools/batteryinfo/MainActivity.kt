@@ -6,9 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.drawable.LayerDrawable
-import android.net.Uri
 import android.os.BatteryManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -17,13 +15,24 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.net.toUri
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         val batteryStatusIntentFilter  = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
         this.registerReceiver(batteryBroadcastReceiver, batteryStatusIntentFilter )
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
     }
 
     private val batteryBroadcastReceiver = object : BroadcastReceiver() {
@@ -72,6 +81,18 @@ class MainActivity : AppCompatActivity() {
             val voltageField = findViewById<TextView>(R.id.voltage)
             voltageField.text = "$voltageValue V"
             voltageField.setTextColor(getColorByLevel(batteryPercentage))
+
+            val batteryManager = context.getSystemService(BATTERY_SERVICE) as BatteryManager
+            val chargeTimeRemaining = batteryManager.computeChargeTimeRemaining()
+            val chargeTimeField = findViewById<TextView>(R.id.charge_time)
+            if (chargeTimeRemaining > 0) {
+                val hours = chargeTimeRemaining / (1000 * 60 * 60)
+                val minutes = (chargeTimeRemaining / (1000 * 60)) % 60
+                chargeTimeField.text = if (hours > 0) "$hours h $minutes m" else "$minutes m"
+            } else {
+                chargeTimeField.text = if (statusValue == BatteryManager.BATTERY_STATUS_CHARGING) "Calculating..." else "N/A"
+            }
+            chargeTimeField.setTextColor(getColorByLevel(batteryPercentage))
         }
     }
 
@@ -95,8 +116,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getColorByTemp(temperature: Int): Int {
-        val level0 = resources.getColor(R.color.cold1, theme)
-        val level1 = resources.getColor(R.color.cold0, theme)
+        val level0 = resources.getColor(R.color.freezing, theme)
+        val level1 = resources.getColor(R.color.cold, theme)
         val level2 = resources.getColor(R.color.cool, theme)
         val level3 = resources.getColor(R.color.perfect, theme)
         val level4 = resources.getColor(R.color.warm, theme)
@@ -131,7 +152,7 @@ class MainActivity : AppCompatActivity() {
         progressBar.progressDrawable = progressBarDrawable
 
         // Update text inside of circle
-        findViewById<TextView>(R.id.text_view_progress).text = "$progress%"
+        findViewById<TextView>(R.id.progress).text = "$progress%"
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -158,7 +179,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.github_btn -> {
                 val gitHubUrl = resources.getString(R.string.app_github)
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(gitHubUrl))
+                val intent = Intent(Intent.ACTION_VIEW, gitHubUrl.toUri())
                 startActivity(intent)
                 true
             }

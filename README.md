@@ -1,7 +1,8 @@
 # BatteryInfo
-## A simple app to get more detailed information about your battery.
 
-Features:
+A simple app to get more detailed information about your battery.
+
+## Features:
 
 - Colorful indication of your current battery percenage
 - Displays the battery temperature in real time
@@ -9,21 +10,32 @@ Features:
 - Warns you of unhealthy battery conditions
 - Lightweight, fast and easy to use
 - Dark mode for eye-friendliness
-<!-- - Helps you to find the best charger -->  
+- Helps you to find the best charger
 
-New features planed!
+### Todo next:
+
+Completely remove legacy code and rewrite app with Jetpack Compose. 
+
 
 <!-- add pictures below -->
 
 <!-- add pictures above  -->
 
-### how to install:
+## Requirements:
 
-The App is available on the Google Play Store, Find it [here!](https://play.google.com/store/apps/details?id=com.martintools.batteryinfo)
+current version: 1.7
 
-### known issues:
-- (no known issues currently)
+|  | API level | Platform Version |
+|-----------|----|------------|
+| minSdk    | 28 | Android 9  |
+| targetSdk | 37 | Android 17 |
 
-### how and where to contribute:
+API level 28 added computeChargeTimeRemaining
 
-Code-optimization, new-features and ideas are welcome, but any form of contribution helps!
+## Installation:
+
+The App is no longer available on the Google Play Store, Find a build in the GitHub [Releases](https://github.com/martin-coding/android-BatteryInfo/releases) section
+
+It is uncertain whether the app will return to Google Play.
+
+A future release via F-Droid is possible, but not planned.

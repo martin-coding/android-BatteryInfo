@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -18,7 +19,7 @@
         tools:progress="60" />
 
     <TextView
-        android:id="@+id/text_view_progress"
+        android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center"
@@ -44,8 +45,8 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textColor="@color/text"
-        app:layout_constraintEnd_toEndOf="@+id/text_view_progress"
-        app:layout_constraintStart_toStartOf="@+id/text_view_progress"
+        app:layout_constraintEnd_toEndOf="@+id/progress"
+        app:layout_constraintStart_toStartOf="@+id/progress"
         app:layout_constraintTop_toBottomOf="@+id/guideline"
         tools:text="27.0 °C" />
 
@@ -152,6 +153,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/progress_bar"
         tools:text="Voltage" />
+
+    <TextView
+        android:id="@+id/charge_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar"
+        tools:text="1 h 20 m" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
