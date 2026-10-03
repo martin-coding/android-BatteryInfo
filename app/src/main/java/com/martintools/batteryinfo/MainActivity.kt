@@ -1,6 +1,5 @@
 package com.martintools.batteryinfo
 
-import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -10,8 +9,6 @@ import android.os.BatteryManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -36,39 +33,47 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val batteryBroadcastReceiver = object : BroadcastReceiver() {
-        @SuppressLint("SetTextI18n")
         override fun onReceive(context: Context, intent: Intent) {
             val batteryPercentage = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)
             updateProgressBar(batteryPercentage)
 
-            val statusValue = intent.getIntExtra(BatteryManager.EXTRA_STATUS, 0)
-            findViewById<ImageView>(R.id.status_power).visibility = if (statusValue == 2) View.VISIBLE else View.INVISIBLE
+            val statusValue = intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN)
+            val statusField = findViewById<TextView>(R.id.status)
+            val statusText = when (statusValue) {
+                BatteryManager.BATTERY_STATUS_CHARGING -> getString(R.string.status_charging)
+                BatteryManager.BATTERY_STATUS_DISCHARGING -> getString(R.string.status_discharging)
+                BatteryManager.BATTERY_STATUS_FULL -> getString(R.string.status_full)
+                BatteryManager.BATTERY_STATUS_NOT_CHARGING -> getString(R.string.status_not_charging)
+                else -> getString(R.string.status_unknown)
+            }
+            statusField.text = statusText
+            statusField.setTextColor(getColorByLevel(batteryPercentage))
 
-
-            val tempValue = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0)/10
+            val rawTemp = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0)
+            val tempValue = rawTemp / 10.0
             val tempField = findViewById<TextView>(R.id.temperature)
-            tempField.text = "$tempValue \u00B0C\n"
-            tempField.setTextColor(getColorByTemp(tempValue))
+            tempField.text = getString(R.string.temperature_format, tempValue)
+            tempField.setTextColor(getColorByTemp(tempValue.toInt()))
 
             val sourceField = findViewById<TextView>(R.id.source)
-            when(intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1)){
-                BatteryManager.BATTERY_PLUGGED_AC -> sourceField.text = "AC charger"
-                BatteryManager.BATTERY_PLUGGED_USB -> sourceField.text = "USB connection"
-                BatteryManager.BATTERY_PLUGGED_WIRELESS -> sourceField.text = "Wireless charging"
-                BatteryManager.BATTERY_PLUGGED_DOCK -> sourceField.text = "Dock"
-                else -> sourceField.text = "Not Plugged"
+            sourceField.text = when(intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1)){
+                BatteryManager.BATTERY_PLUGGED_AC -> getString(R.string.source_ac)
+                BatteryManager.BATTERY_PLUGGED_USB -> getString(R.string.source_usb)
+                BatteryManager.BATTERY_PLUGGED_WIRELESS -> getString(R.string.source_wireless)
+                BatteryManager.BATTERY_PLUGGED_DOCK -> getString(R.string.source_dock)
+                else -> getString(R.string.source_not_plugged)
             }
             sourceField.setTextColor(getColorByLevel(batteryPercentage))
 
             val healthField = findViewById<TextView>(R.id.health)
-            when(intent.getIntExtra(BatteryManager.EXTRA_HEALTH, 0)){
-                BatteryManager.BATTERY_HEALTH_OVERHEAT -> healthField.text = "Overheated"
-                BatteryManager.BATTERY_HEALTH_GOOD -> healthField.text = "Good"
-                BatteryManager.BATTERY_HEALTH_COLD -> healthField.text = "Cold"
-                BatteryManager.BATTERY_HEALTH_DEAD -> healthField.text = "Dead"
-                BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE -> healthField.text = "Over voltage"
-                BatteryManager.BATTERY_HEALTH_UNSPECIFIED_FAILURE -> healthField.text = "Failed"
-                else -> healthField.text = "Unknown"
+            healthField.text = when(intent.getIntExtra(BatteryManager.EXTRA_HEALTH, 0)){
+                BatteryManager.BATTERY_HEALTH_OVERHEAT -> getString(R.string.health_overheat)
+                BatteryManager.BATTERY_HEALTH_GOOD -> getString(R.string.health_good)
+                BatteryManager.BATTERY_HEALTH_COLD -> getString(R.string.health_cold)
+                BatteryManager.BATTERY_HEALTH_DEAD -> getString(R.string.health_dead)
+                BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE -> getString(R.string.health_over_voltage)
+                BatteryManager.BATTERY_HEALTH_UNSPECIFIED_FAILURE -> getString(R.string.health_failed)
+                else -> getString(R.string.health_unknown)
             }
             healthField.setTextColor(getColorByLevel(batteryPercentage))
 
@@ -79,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
             val voltageValue = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0).toDouble()/1000
             val voltageField = findViewById<TextView>(R.id.voltage)
-            voltageField.text = "$voltageValue V"
+            voltageField.text = getString(R.string.voltage_format, voltageValue)
             voltageField.setTextColor(getColorByLevel(batteryPercentage))
 
             val batteryManager = context.getSystemService(BATTERY_SERVICE) as BatteryManager
@@ -88,9 +93,17 @@ class MainActivity : AppCompatActivity() {
             if (chargeTimeRemaining > 0) {
                 val hours = chargeTimeRemaining / (1000 * 60 * 60)
                 val minutes = (chargeTimeRemaining / (1000 * 60)) % 60
-                chargeTimeField.text = if (hours > 0) "$hours h $minutes m" else "$minutes m"
+                chargeTimeField.text = if (hours > 0) {
+                    getString(R.string.charge_time_hours_minutes, hours, minutes)
+                } else {
+                    getString(R.string.charge_time_minutes, minutes)
+                }
             } else {
-                chargeTimeField.text = if (statusValue == BatteryManager.BATTERY_STATUS_CHARGING) "Calculating..." else "N/A"
+                chargeTimeField.text = if (statusValue == BatteryManager.BATTERY_STATUS_CHARGING) {
+                    getString(R.string.calculating)
+                } else {
+                    getString(R.string.not_applicable)
+                }
             }
             chargeTimeField.setTextColor(getColorByLevel(batteryPercentage))
         }
@@ -124,17 +137,16 @@ class MainActivity : AppCompatActivity() {
         val level5 = resources.getColor(R.color.hot, theme)
 
         val color = when {
-            temperature >= 55 -> level5
+            temperature >= 48 -> level5
             temperature >= 35 -> level4
             temperature >= 20 -> level3
-            temperature >= 5 -> level2
-            temperature >= -10 -> level1
+            temperature >= 10 -> level2
+            temperature >= 0 -> level1
             else -> level0
         }
         return color
     }
 
-    @SuppressLint("SetTextI18n")
     private fun updateProgressBar(progress: Int) {
         val progressBar = findViewById<ProgressBar>(R.id.progress_bar)
         val progressBarDrawable = progressBar.progressDrawable as LayerDrawable
@@ -152,7 +164,7 @@ class MainActivity : AppCompatActivity() {
         progressBar.progressDrawable = progressBarDrawable
 
         // Update text inside of circle
-        findViewById<TextView>(R.id.progress).text = "$progress%"
+        findViewById<TextView>(R.id.progress).text = getString(R.string.battery_percentage, progress)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -167,14 +179,14 @@ class MainActivity : AppCompatActivity() {
                 val myIntent = Intent(Intent.ACTION_SEND)
                 myIntent.type = "text/plain"
                 val shareBody = resources.getString(R.string.app_playstore)
-                val shareSub = "With this app you can view battery information. Try it out!"
+                val shareSub = getString(R.string.share_subject)
                 myIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub)
                 myIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
-                startActivity(Intent.createChooser(myIntent, "Share via"))
+                startActivity(Intent.createChooser(myIntent, getString(R.string.share_via)))
                 true
             }
             R.id.info_btn -> {
-                Toast.makeText(applicationContext,"Created by Martin",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, getString(R.string.created_by), Toast.LENGTH_SHORT).show()
                 true
             }
             R.id.github_btn -> {

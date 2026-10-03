@@ -23,31 +23,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/status"
         app:layout_constraintEnd_toEndOf="@+id/progress_bar"
         app:layout_constraintStart_toStartOf="@+id/progress_bar"
+        app:layout_constraintTop_toTopOf="@+id/progress_bar"
+        app:layout_constraintVertical_chainStyle="packed"
         tools:text="60%" />
 
-    <ImageView
-        android:id="@+id/status_power"
+    <TextView
+        android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/is_charging"
-        app:layout_constraintEnd_toEndOf="@+id/temperature"
-        app:layout_constraintStart_toStartOf="@+id/temperature"
-        app:layout_constraintTop_toBottomOf="@+id/temperature"
-        app:srcCompat="@drawable/charger" />
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/temperature"
+        app:layout_constraintEnd_toEndOf="@+id/progress_bar"
+        app:layout_constraintStart_toStartOf="@+id/progress_bar"
+        app:layout_constraintTop_toBottomOf="@+id/progress"
+        tools:text="Charging" />
 
     <TextView
         android:id="@+id/temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textColor="@color/text"
-        app:layout_constraintEnd_toEndOf="@+id/progress"
-        app:layout_constraintStart_toStartOf="@+id/progress"
-        app:layout_constraintTop_toBottomOf="@+id/guideline"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
+        app:layout_constraintEnd_toEndOf="@+id/progress_bar"
+        app:layout_constraintStart_toStartOf="@+id/progress_bar"
+        app:layout_constraintTop_toBottomOf="@+id/status"
         tools:text="27.0 °C" />
 
     <TextView

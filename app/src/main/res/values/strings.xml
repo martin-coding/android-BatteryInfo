@@ -2,7 +2,11 @@
     <string name="app_name">Battery Info</string>
     <string name="app_github">https://github.com/martin-coding/android-BatteryInfo</string>
     <string name="app_playstore">https://github.com/martin-coding/android-BatteryInfo/releases</string>
-    <string name="is_charging">is charging</string>
+    <string name="status_charging">Charging</string>
+    <string name="status_discharging">Discharging</string>
+    <string name="status_full">Full</string>
+    <string name="status_not_charging">Not charging</string>
+    <string name="status_unknown">Unknown</string>
     <string name="voltage">Voltage</string>
     <string name="technology">Technology</string>
     <string name="health">Health</string>
@@ -12,4 +16,32 @@
     <string name="source_code">Source Code</string>
     <string name="info">Info</string>
     <string name="share">Share</string>
+
+    <string name="temperature_format">%1$.1f °C</string>
+
+    <string name="source_ac">AC charger</string>
+    <string name="source_usb">USB connection</string>
+    <string name="source_wireless">Wireless charging</string>
+    <string name="source_dock">Dock</string>
+    <string name="source_not_plugged">Not Plugged</string>
+
+    <string name="health_overheat">Overheated</string>
+    <string name="health_good">Good</string>
+    <string name="health_cold">Cold</string>
+    <string name="health_dead">Dead</string>
+    <string name="health_over_voltage">Over voltage</string>
+    <string name="health_failed">Failed</string>
+    <string name="health_unknown">Unknown</string>
+
+    <string name="voltage_format">%1$.3f V</string>
+
+    <string name="charge_time_hours_minutes">%1$d h %2$d m</string>
+    <string name="charge_time_minutes">%1$d m</string>
+    <string name="calculating">Calculating…</string>
+    <string name="not_applicable">N/A</string>
+    <string name="battery_percentage">%1$d%%</string>
+
+    <string name="share_subject">With this app you can view battery information. Try it out!</string>
+    <string name="share_via">Share via</string>
+    <string name="created_by">Created by Martin</string>
 </resources>

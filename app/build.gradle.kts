@@ -12,8 +12,8 @@ android {
         applicationId = "com.martintools.batteryinfo"
         minSdk = 28
         targetSdk = 37
-        versionCode = 7
-        versionName = "1.7"
+        versionCode = 8
+        versionName = "1.8"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

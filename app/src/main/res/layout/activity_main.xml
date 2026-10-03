@@ -22,34 +22,39 @@
         android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:layout_marginTop="70dp"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/status"
         app:layout_constraintEnd_toEndOf="@+id/progress_bar"
         app:layout_constraintStart_toStartOf="@+id/progress_bar"
         app:layout_constraintTop_toTopOf="@+id/progress_bar"
+        app:layout_constraintVertical_chainStyle="packed"
         tools:text="60%" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/temperature"
+        app:layout_constraintEnd_toEndOf="@+id/progress_bar"
+        app:layout_constraintStart_toStartOf="@+id/progress_bar"
+        app:layout_constraintTop_toBottomOf="@+id/progress"
+        tools:text="Charging" />
 
     <TextView
         android:id="@+id/temperature"
         android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/progress"
-        app:layout_constraintStart_toStartOf="@+id/progress"
-        app:layout_constraintTop_toBottomOf="@+id/progress"
-        tools:text="27.0 °C" />
-
-    <ImageView
-        android:id="@+id/status_power"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/is_charging"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
-        app:layout_constraintEnd_toEndOf="@+id/temperature"
-        app:layout_constraintStart_toStartOf="@+id/temperature"
-        app:layout_constraintTop_toBottomOf="@+id/temperature"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/charger" />
+        app:layout_constraintEnd_toEndOf="@+id/progress_bar"
+        app:layout_constraintStart_toStartOf="@+id/progress_bar"
+        app:layout_constraintTop_toBottomOf="@+id/status"
+        tools:text="27.0 °C" />
 
     <TextView
         android:id="@+id/source"
