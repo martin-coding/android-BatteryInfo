@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BatteryInfo</string>
+    <string name="app_name">Battery Info</string>
     <string name="app_github">https://github.com/martin-coding/android-BatteryInfo</string>
     <string name="app_playstore">https://github.com/martin-coding/android-BatteryInfo/releases</string>
     <string name="is_charging">is charging</string>
